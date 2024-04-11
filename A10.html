@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookies</title>
+
+</head>
+<body>
+    <h1>Enter a value to set a cookie</h1>
+    <input type="text" id="cookieInput" placeholder="Enter cookie value">
+    <button onclick="setCookie()">Submit</button>
+    <p id="cookieValue"></p>
+
+    <script>
+        function setCookie() {
+            const cookieValue = document.getElementById("cookieInput").value;
+            document.cookie = `exampleCookie=${cookieValue}`;
+            document.getElementById("cookieValue").innerText = `Cookie set with value: ${cookieValue}`;
+        }
+
+        function getCookie(name) {
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                const [cookieName, cookieValue] = cookie.split('=');
+                if (cookieName.trim() === name) {
+                    return cookieValue;
+                }
+            }
+            return null;
+        }
+
+        window.onload = function() {
+            const cookieValue = getCookie("exampleCookie");
+            if (cookieValue) {
+                document.getElementById("cookieValue").innerText = `Cookie value: ${cookieValue}`;
+            }
+        };
+    </script>
+</body>
+</html>
